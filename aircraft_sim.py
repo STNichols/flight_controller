@@ -27,17 +27,14 @@ plt.ion()
 class aircraft_sim(object):
     
     def __init__(self):
+        '''Define the parameters of the simulated arduino aircraft
+        '''
         
         self.mass = 0.453592; # Set mass to 1 lb
         self.sim_start = time.time()
         self.last_update = self.sim_start
         self.motor_speed = 0
         self.sim_crit_power = crit_ratio * max_power
-        
-        # Setup figure for logging position
-        self.log_fig = plt.figure()
-        self.log_ax = self.log_fig.add_subplot(111)
-        self.log_ax.grid()
         
         self.x_pos = 0
         self.y_pos = 0
@@ -50,6 +47,15 @@ class aircraft_sim(object):
         self.x_acc = 0
         self.y_acc = 0
         self.z_acc = -a_gravity
+        
+        # Setup logging of simulated data
+        self.log_fig = plt.figure()
+        self.log_ax = self.log_fig.add_subplot(111)
+        self.log_ax.grid()
+        self.t_log = np.array([])
+        self.z_pos_log = np.array([])
+        self.z_vel_log = np.array([])
+        self.z_acc_log = np.array([])
         
     def update_state(self):
         ''' Kinematic Equations are used to update the state of the aircraft
@@ -93,6 +99,10 @@ class aircraft_sim(object):
         self.last_update = current_t
         
         self.plot_state()
+        self.t_log = np.append(self.t_log, current_t)
+        self.z_pos_log = np.append(self.z_pos_log, self.z_pos)
+        self.z_vel_log = np.append(self.z_vel_log, self.z_vel)
+        self.z_acc_log = np.append(self.z_acc_log, self.z_acc)
         
     def analogWrite(self, sim_pin, value):
         

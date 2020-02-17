@@ -84,9 +84,6 @@ class aircraft(object):
                 # Tune the motor speed to smooth approach
                 new_acc = init_acc * (np.abs(current_alt - alt) / altitude_gap)
                 self.set_motors((1 - new_acc) *self.crit_speed)
-                
-                time.sleep(0.1)
-                print(current_alt)
         elif current_alt < alt:
             
             self.set_motors((1 + init_acc) *self.crit_speed)
@@ -98,9 +95,6 @@ class aircraft(object):
                 # Tune the motor speed to smooth approach
                 new_acc = init_acc * (np.abs(current_alt - alt) / altitude_gap)
                 self.set_motors((1 + new_acc) *self.crit_speed)
-                
-                time.sleep(0.1)
-                print(current_alt)
         else:
             pass
         self.set_motors(self.crit_speed)
