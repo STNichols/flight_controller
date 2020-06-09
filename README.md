@@ -6,7 +6,7 @@ Additionally, for simulated flight the aircraft_sim class object may be used ins
 to test aircraft behavior.
 
 For an example of the simulated aircraft performing predetermined manuevers, refer to:
-https://github.com/STNichols/flight_controller/blob/master/Flight_Test.ipynb
+https://github.com/STNichols/flight_controller/blob/master/Flight_Test.html
 
 This module imports Arduino class from Python-Arduino_Proto-API-v2
 for generic serial communications via digital/analog read/writes
